@@ -13,7 +13,7 @@ const (
 // 加密传输的 TCP Socket
 type SecureTCPConn struct {
 	io.ReadWriteCloser
-	Cipher *Cipher
+	Cipher *CryproCipher
 }
 
 // 从输入流里读取加密过的数据，解密后把原数据放到bs里
@@ -84,7 +84,7 @@ func (secureSocket *SecureTCPConn) DecodeCopy(dst io.Writer) error {
 }
 
 // see net.DialTCP
-func DialEncryptedTCP(raddr *net.TCPAddr, cipher *Cipher) (*SecureTCPConn, error) {
+func DialEncryptedTCP(raddr *net.TCPAddr, cipher *CryproCipher) (*SecureTCPConn, error) {
 	remoteConn, err := net.DialTCP("tcp", nil, raddr)
 	if err != nil {
 		return nil, err
@@ -99,7 +99,7 @@ func DialEncryptedTCP(raddr *net.TCPAddr, cipher *Cipher) (*SecureTCPConn, error
 }
 
 // see net.ListenTCP
-func ListenEncryptedTCP(laddr *net.TCPAddr, cipher *Cipher, handleConn func(localConn *SecureTCPConn), didListen func(listenAddr *net.TCPAddr)) error {
+func ListenEncryptedTCP(laddr *net.TCPAddr, cipher *CryproCipher, handleConn func(localConn *SecureTCPConn), didListen func(listenAddr *net.TCPAddr)) error {
 	listener, err := net.ListenTCP("tcp", laddr)
 	if err != nil {
 		return err

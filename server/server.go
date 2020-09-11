@@ -8,7 +8,7 @@ import (
 )
 
 type LsServer struct {
-	Cipher     *lightsocks.Cipher
+	Cipher     *lightsocks.CryproCipher
 	ListenAddr *net.TCPAddr
 }
 

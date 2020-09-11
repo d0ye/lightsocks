@@ -10,7 +10,7 @@ const (
 	MB = 1024 * 1024
 )
 
-// 测试 Cipher 加密解密
+// 测试 CryproCipher 加密解密
 func TestCipher(t *testing.T) {
 	password := RandPassword()
 	t.Log(password)

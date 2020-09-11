@@ -8,7 +8,7 @@ import (
 )
 
 type LsLocal struct {
-	Cipher     *lightsocks.Cipher
+	Cipher     *lightsocks.CryproCipher
 	ListenAddr *net.TCPAddr
 	RemoteAddr *net.TCPAddr
 }
